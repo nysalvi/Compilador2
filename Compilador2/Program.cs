@@ -4,8 +4,8 @@ using System.Collections.Generic;
 namespace Compilador2
 {
     internal class Program
-    {        
-        
+    {
+
         public static void Main(string[] args)
         {
             Console.WriteLine("Type in the input");
@@ -15,8 +15,9 @@ namespace Compilador2
             string currentLexeme = "";
             //bool read = false;
             List<int> tokens = new List<int>();
-            List<string> lexemes = new List<string>();  
-            for(int i = 0; i < current.Length;  i++)
+            List<string> lexemes = new List<string>();
+            List<Token> _tokens = new List<Token>();
+            for (int i = 0; i < current.Length; i++)
             {
                 if (id == 0)
                 {
@@ -111,74 +112,62 @@ namespace Compilador2
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(67);
-                        lexemes.Add(current[i].ToString());
+                        _tokens.Add(new Token(67, current[i].ToString()));
                         id = 0;
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(68);
-                        lexemes.Add(current[i].ToString());
+                        _tokens.Add(new Token(68, current[i].ToString()));
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(69);
-                        lexemes.Add(current[i].ToString());
+                        _tokens.Add(new Token(69, current[i].ToString()));
                         id = 0;
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(70);
-                        lexemes.Add(current[i].ToString());
+                        _tokens.Add(new Token(70, current[i].ToString()));
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(71);
-                        lexemes.Add(current[i].ToString());
+                        _tokens.Add(new Token(71, current[i].ToString()));
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(72);
-                        lexemes.Add(current[i].ToString());
+                        _tokens.Add(new Token(72, current[i].ToString()));
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(73);
-                        lexemes.Add(current[i].ToString());
+                        _tokens.Add(new Token(73, current[i].ToString()));
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(74);
-                        lexemes.Add(current[i].ToString());
+                        _tokens.Add(new Token(74, current[i].ToString()));
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(75);
-                        lexemes.Add(current[i].ToString());
+                        _tokens.Add(new Token(75, current[i].ToString()));
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(76);
-                        lexemes.Add(current[i].ToString());
+                        _tokens.Add(new Token(76, current[i].ToString()));
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(77);
-                        lexemes.Add(current[i].ToString());
+                        _tokens.Add(new Token(77, current[i].ToString()));
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(79);
-                        lexemes.Add(current[i].ToString());
+                        _tokens.Add(new Token(79, current[i].ToString()));
                         id = 0;
                     }
                     else if (current[i] == '_')
@@ -203,7 +192,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -221,167 +210,135 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -402,7 +359,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -415,174 +372,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -603,7 +527,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -611,174 +535,141 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -799,7 +690,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -807,174 +698,141 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -995,7 +853,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -1003,174 +861,141 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -1191,7 +1016,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -1209,174 +1034,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -1397,7 +1189,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -1410,174 +1202,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -1598,7 +1357,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -1611,174 +1370,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -1799,7 +1525,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -1812,181 +1538,148 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75,
+"+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -2007,7 +1700,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -2016,174 +1709,142 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75,
+"+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -2204,7 +1865,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -2218,174 +1879,142 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75,
+"+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -2406,7 +2035,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -2415,174 +2044,141 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -2603,7 +2199,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -2616,174 +2212,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -2804,7 +2367,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -2817,174 +2380,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -3005,7 +2535,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -3018,174 +2548,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -3206,7 +2703,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -3214,174 +2711,141 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -3402,7 +2866,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -3415,174 +2879,145 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5,
+currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5,
+currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5,
+currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5,
+currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -3603,7 +3038,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -3617,174 +3052,161 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5,
+currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5,
+currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5,
+currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5,
+currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5,
+currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5,
+currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5,
+currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5,
+currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5,
+currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5,
+currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5,
+currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5,
+currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5,
+currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5,
+currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5,
+currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5,
+currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5,
+currentLexeme)); _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5,
+currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5,
+currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5,
+currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5,
+currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -3805,7 +3227,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -3818,174 +3240,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -4006,7 +3395,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -4019,174 +3408,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -4207,7 +3563,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -4220,174 +3576,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -4408,7 +3731,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -4421,174 +3744,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -4609,7 +3899,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -4617,174 +3907,141 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -4805,7 +4062,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -4818,174 +4075,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -5006,7 +4230,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -5019,174 +4243,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -5207,7 +4398,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -5220,174 +4411,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -5408,7 +4566,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -5416,174 +4574,141 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -5604,7 +4729,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -5617,174 +4742,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -5805,7 +4897,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -5818,174 +4910,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -6006,7 +5065,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -6019,174 +5078,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -6207,7 +5233,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -6220,174 +5246,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -6408,7 +5401,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -6416,174 +5409,141 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -6604,7 +5564,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -6617,174 +5577,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -6805,7 +5732,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -6818,174 +5745,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -7006,7 +5900,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -7019,174 +5913,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -7207,7 +6068,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -7220,174 +6081,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -7408,7 +6236,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -7416,174 +6244,141 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -7604,7 +6399,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -7617,174 +6412,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -7805,7 +6567,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -7818,174 +6580,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -8006,7 +6735,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -8019,174 +6748,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -8207,7 +6903,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -8215,174 +6911,141 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -8403,7 +7066,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -8416,174 +7079,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -8604,7 +7234,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -8617,174 +7247,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -8805,7 +7402,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -8818,174 +7415,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -9006,7 +7570,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -9019,174 +7583,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -9207,7 +7738,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -9220,174 +7751,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -9408,7 +7906,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -9420,174 +7918,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -9608,7 +8073,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -9616,174 +8081,141 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -9804,7 +8236,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -9817,174 +8249,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -10005,7 +8404,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -10018,174 +8417,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -10206,7 +8572,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -10219,174 +8585,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -10407,7 +8740,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -10420,174 +8753,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -10608,7 +8908,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -10621,174 +8921,141 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 65;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(5, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(5, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(5);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(5, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -10809,7 +9076,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -10817,47 +9084,39 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -10878,7 +9137,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -10886,22 +9145,19 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(55);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(55, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(55);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(55, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(55);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(55, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
@@ -10912,32 +9168,27 @@ namespace Compilador2
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(55);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(55, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(55);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(55, currentLexeme));
                         currentLexeme = "";
                         id = 5;
                     }
 
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(55);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(55, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(55);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(55, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -10964,7 +9215,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -10972,22 +9223,19 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(56);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(56, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(56);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(56, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(56);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(56, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
@@ -10998,31 +9246,26 @@ namespace Compilador2
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(56);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(56, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(56);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(56, currentLexeme));
                         currentLexeme = "";
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(56);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(56, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(56);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(56, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -11049,7 +9292,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -11062,46 +9305,39 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(57);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(57, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(57);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(57, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(57);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(57, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(57);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(57, currentLexeme));
 
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(57);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(57, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(57);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(57, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -11128,7 +9364,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -11141,52 +9377,44 @@ namespace Compilador2
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(58);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(58, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(58);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(58, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(58);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(58, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(58);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(58, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(58);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(58, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(58);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(58, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(58);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(58, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -11213,7 +9441,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -11222,45 +9450,38 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -11287,7 +9508,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -11295,45 +9516,38 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -11360,7 +9574,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -11369,52 +9583,44 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -11441,7 +9647,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -11450,59 +9656,50 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -11529,7 +9726,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -11543,7 +9740,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -11552,78 +9749,65 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -11650,7 +9834,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -11663,7 +9847,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -11672,78 +9856,65 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -11770,7 +9941,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -11779,110 +9950,94 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 66;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 67;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 68;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 69;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 70;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 71;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 72;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -11909,7 +10064,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -11917,134 +10072,116 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 66;
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 68;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 69;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 70;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 71;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 72;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 73;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 74;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 75;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 76;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 77;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 79;
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -12052,202 +10189,165 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 66;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -12274,7 +10374,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -12282,202 +10382,165 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 66;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -12504,7 +10567,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -12513,202 +10576,165 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 66;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -12735,7 +10761,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -12744,202 +10770,165 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 66;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -12966,7 +10955,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -12975,202 +10964,165 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 66;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -13197,7 +11149,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -13206,202 +11158,165 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 66;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -13428,7 +11343,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -13437,202 +11352,165 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 66;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -13659,7 +11537,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -13668,202 +11546,165 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 66;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -13890,7 +11731,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -13899,202 +11740,165 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 66;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -14121,211 +11925,173 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
-
                 }
                 else if (id == 78)
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 66;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -14352,7 +12118,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
@@ -14362,200 +12128,164 @@ namespace Compilador2
                     if (current[i] == '/')
                     {
                         id = 80;
-                        tokens.Add(id);
+                        _tokens.Add(new Token(id, "%"));
                         currentLexeme = "";
                     }
                     else if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 66;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '_')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 5;
                     }
                     else if (char.IsNumber(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 83;
                     }
                     else if (char.IsLetter(current[i]))
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         if (current[i] == 'i')
                             id = 1;
                         else if (current[i] == 'f')
@@ -14582,7 +12312,7 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
                 }
@@ -14590,7 +12320,7 @@ namespace Compilador2
                 {
                     if (current[i] == '\n')
                     {
-                        tokens.Add(id);                        
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -14603,181 +12333,147 @@ namespace Compilador2
                 {
                     if (current[i] == ' ')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 66;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme)); 
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -14795,190 +12491,161 @@ namespace Compilador2
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
                 }
                 else if (id == 83)
                 {
-                    if (current[i] == ' ')
+                    if (current[i] == '.')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        currentLexeme += current[i];
+                        id = 84;
+                    }
+                    else if (current[i] == ' ')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '\n')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '"')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 87;
                     }
                     else if (current[i] == '<')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 55;
                     }
                     else if (current[i] == '>')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 56;
                     }
                     else if (current[i] == '!')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 57;
                     }
                     else if (current[i] == '=')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 58;
                     }
                     else if (current[i] == '|')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 63;
                     }
                     else if (current[i] == '/')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 78;
                     }
                     else if (current[i] == '&')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
                         currentLexeme = "" + current[i];
                         id = 66;
                     }
                     else if (current[i] == '(')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(67);
-                        lexemes.Add("(");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ')')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(68);
-                        lexemes.Add(")");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '[')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(69);
-                        lexemes.Add("[");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
                         currentLexeme = "";
                         id = 0;
 
                     }
                     else if (current[i] == ']')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(70);
-                        lexemes.Add("]");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '{')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(71);
-                        lexemes.Add("{");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '}')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(72);
-                        lexemes.Add("}");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ',')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(73);
-                        lexemes.Add(",");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == ';')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(74);
-                        lexemes.Add(";");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(74, ";"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '+')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(75);
-                        lexemes.Add("+");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '-')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(76);
-                        lexemes.Add("-");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '*')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(77);
-                        lexemes.Add("*");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
                         currentLexeme = "";
                         id = 0;
                     }
                     else if (current[i] == '%')
                     {
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
-                        tokens.Add(79);
-                        lexemes.Add("%");
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
                         currentLexeme = "";
                         id = 0;
                     }
@@ -14992,29 +12659,207 @@ namespace Compilador2
                         currentLexeme += current[i];
                     }
                     else if (char.IsLetter(current[i]))
-                    {                        
+                    {
                         currentLexeme += current[i];
                         id = 5;
                     }
                     else
                     {
-                        tokens.Add(-1);
+                        _tokens.Add(new Token(-1, currentLexeme));
+                        break;
+                    }
+
+                }
+                else if (id == 84)
+                {
+                    if (char.IsNumber(current[i]))
+                    {
+                        currentLexeme += current[i];
+                        id = 85;
+                    }
+                    else
+                    {                        
+                        _tokens.Add(new Token(-1, currentLexeme));
+                        id = 0;
+                        currentLexeme = "";
+                    }
+                }
+                else if (id == 85)
+                {
+                    if (char.IsNumber(current[i]))
+                        currentLexeme += current[i];
+                    else if (current[i] == ' ')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        currentLexeme = "";
+                        id = 0;
+                    }
+                    else if (current[i] == '\n')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        currentLexeme = "";
+                        id = 0;
+                    }
+                    else if (current[i] == '"')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        currentLexeme = "" + current[i];
+                        id = 87;
+                    }
+                    else if (current[i] == '<')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        currentLexeme = "" + current[i];
+                        id = 55;
+                    }
+                    else if (current[i] == '>')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        currentLexeme = "" + current[i];
+                        id = 56;
+                    }
+                    else if (current[i] == '!')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        currentLexeme = "" + current[i];
+                        id = 57;
+                    }
+                    else if (current[i] == '=')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        currentLexeme = "" + current[i];
+                        id = 58;
+                    }
+                    else if (current[i] == '|')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        currentLexeme = "" + current[i];
+                        id = 63;
+                    }
+                    else if (current[i] == '/')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        currentLexeme = "" + current[i];
+                        id = 78;
+                    }
+                    else if (current[i] == '&')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        currentLexeme = "" + current[i];
+                        id = 66;
+                    }
+                    else if (current[i] == '(')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(67, "("));
+                        currentLexeme = "";
+                        id = 0;
+
+                    }
+                    else if (current[i] == ')')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(68, ")"));
+                        currentLexeme = "";
+                        id = 0;
+                    }
+                    else if (current[i] == '[')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(69, "["));
+                        currentLexeme = "";
+                        id = 0;
+
+                    }
+                    else if (current[i] == ']')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(70, "]"));
+                        currentLexeme = "";
+                        id = 0;
+                    }
+                    else if (current[i] == '{')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(71, "{"));
+                        currentLexeme = "";
+                        id = 0;
+                    }
+                    else if (current[i] == '}')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(72, "}"));
+                        currentLexeme = "";
+                        id = 0;
+                    }
+                    else if (current[i] == ',')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(73, ","));
+                        currentLexeme = "";
+                        id = 0;
+                    }
+                    else if (current[i] == ';')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(74, ";"));
+                        currentLexeme = "";
+                        id = 0;
+                    }
+                    else if (current[i] == '+')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(75, "+"));
+                        currentLexeme = "";
+                        id = 0;
+                    }
+                    else if (current[i] == '-')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(76, "-"));
+                        currentLexeme = "";
+                        id = 0;
+                    }
+                    else if (current[i] == '*')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(77, "*"));
+                        currentLexeme = "";
+                        id = 0;
+                    }
+                    else if (current[i] == '%')
+                    {
+                        _tokens.Add(new Token(id, currentLexeme));
+                        _tokens.Add(new Token(79, "%"));
+                        currentLexeme = "";
+                        id = 0;
+                    }
+                    else if (current[i] == '_')
+                    {
+                        currentLexeme += current[i];
+                    }
+                    else if (char.IsNumber(current[i]))
+                    {
+                        currentLexeme += current[i];
+                    }
+                    else if (char.IsLetter(current[i]))
+                    {
+                        currentLexeme += current[i];
+                    }
+                    else
+                    {
+                        _tokens.Add(new Token(-1, currentLexeme));
                         break;
                     }
 
                 }
                 else if (id == 87)
                 {
-                    /*if (i == current.Length - 1)
-                    {
-                        tokens.Add(-1);
-                        lexemes.Add(currentLexeme);
-                    }*/
                     if (current[i] == '"')
                     {
                         currentLexeme += current[i];
-                        tokens.Add(id);
-                        lexemes.Add(currentLexeme);
+                        _tokens.Add(new Token(id, currentLexeme));
+                        currentLexeme = "";
                         id = 0;
                     }
                     else currentLexeme += current[i];
@@ -15024,173 +12869,16 @@ namespace Compilador2
             if (currentLexeme != "")
             {
                 if (id == 87)
-                    tokens.Add(-1);
+                    _tokens.Add(new Token(-1, currentLexeme));
                 else
-                    tokens.Add(id);
-                lexemes.Add(currentLexeme);
+                    _tokens.Add(new Token(id, currentLexeme));
             }
-            List<Token> _tokens = new List<Token>();
-            for (int i = 0; i < tokens.Count; i++)
-            {
-                _tokens.Add(new Token(lexemes[i], tokens[i]));
-                Console.WriteLine("id : {0} | Lexeme : {1} ", _tokens[i].Lexeme, _tokens[i].Value);
-            }
-        }
-        public bool SearchUNRESERVED_LETTERS(ref char currentValue)
-        {
-            if (currentValue == 'a')
-                return true;
-            else if (currentValue == 'd')
-                return true;
-            else if (currentValue == 'g')
-                return true;
-            else if (currentValue == 'h')
-                return true;
-            else if (currentValue == 'j')
-                return true;
-            else if (currentValue == 'k')
-                return true;
-            else if (currentValue == 'l')
-                return true;
-            else if (currentValue == 'n')
-                return true;
-            else if (currentValue == 'o')
-                return true;
-            else if (currentValue == 'q')
-                return true;
-            else if (currentValue == 't')
-                return true;
-            else if (currentValue == 'u')
-                return true;
-            else if (currentValue == 'x')
-                return true;
-            else if (currentValue == 'y')
-                return true;
-            else if (currentValue == 'z')
-                return true;
-            return false;
 
+            for (int i = 0; i < _tokens.Count; i++)
+            {             
+                Console.WriteLine(_tokens[i].ToString());
+            }
+            
         }
-        #region GENERIC
-        public int NLD(ref char currentValue)
-        {
-            if (currentValue == ' ')
-                return 84;
-            if (currentValue == '\n')
-                return 85;
-            if (currentValue == '+')
-                return 75;
-            if (currentValue == '-')
-                return 76;
-            if (currentValue == '*')
-                return 77;
-            if (currentValue == '/')
-                return 78;
-            if (currentValue == '%')
-                return 79;
-            if (currentValue == ',')
-                return 73;
-            if (currentValue == ';')
-                return 74;
-            if (currentValue == '(')
-                return 67;
-            if (currentValue == ')')
-                return 68;
-            if (currentValue == '{')
-                return 71;
-            if (currentValue == '}')
-                return 72;
-            if (currentValue == '[')
-                return 69;
-            if (currentValue == ']')
-                return 70;
-            if (currentValue == '_')
-                return 82;
-            if (currentValue == '|')
-                return 63;
-            if (currentValue == '!')
-                return 57;
-            if (currentValue == '<')
-                return 55;
-            if (currentValue == '>')
-                return 56;
-            if (currentValue == '=')
-                return 58;
-            return -1;
-        }
-        public bool Numbers (ref char currentValue)
-        {
-            if (currentValue == '0' || currentValue == '1' || currentValue == '2'
-                || currentValue == '3' || currentValue == '4')
-                return true;
-            else if (currentValue == '5' || currentValue == '6' || currentValue == '7'
-                || currentValue == '8' || currentValue == '9')
-                return true;
-            return false;
-        }
-        public bool Alphabet(ref char currentValue)
-        {
-            if (currentValue == 'a' || currentValue == 'A')
-                return true;
-            if (currentValue == 'b' || currentValue == 'B')
-                return true;
-            if (currentValue == 'c' || currentValue == 'C')
-                return true;
-            if (currentValue == 'd' || currentValue == 'D')
-                return true;
-            if (currentValue == 'e' || currentValue == 'E')
-                return true;
-            if (currentValue == 'f' || currentValue == 'F')
-                return true;
-            if (currentValue == 'g' || currentValue == 'G')
-                return true;
-            if (currentValue == 'h' || currentValue == 'H')
-                return true;
-            if (currentValue == 'i' || currentValue == 'I')
-                return true;
-            if (currentValue == 'j' || currentValue == 'J')
-                return true;
-            if (currentValue == 'k' || currentValue == 'K')
-                return true;
-            if (currentValue == 'l' || currentValue == 'L')
-                return true;
-            if (currentValue == 'm' || currentValue == 'M')
-                return true;
-            if (currentValue == 'n' || currentValue == 'N')
-                return true;
-            if (currentValue == 'o' || currentValue == 'O')
-                return true;
-            if (currentValue == 'p' || currentValue == 'P')
-                return true;
-            if (currentValue == 'q' || currentValue == 'Q')
-                return true;
-            if (currentValue == 'r' || currentValue == 'R')
-                return true;
-            if (currentValue == 's' || currentValue == 'S')
-                return true;
-            if (currentValue == 't' || currentValue == 'T')
-                return true;
-            if (currentValue == 'u' || currentValue == 'U')
-                return true;
-            if (currentValue == 'v' || currentValue == 'V')
-                return true;
-            if (currentValue == 'w' || currentValue == 'W')
-                return true;
-            if (currentValue == 'x' || currentValue == 'X')
-                return true;
-            if (currentValue == 'y' || currentValue == 'Y')
-                return true;
-            if (currentValue == 'z' || currentValue == 'Z')
-                return true;
-            return false;
-        }
-        public bool ValidChar(ref char currentValue)
-        {
-            if (Numbers(ref currentValue)
-                || Alphabet(ref currentValue))
-                return true;
-            return false;
-        }
-        #endregion
     }
 }

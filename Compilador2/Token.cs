@@ -27,7 +27,7 @@ namespace Compilador2
             {55, "<"},
             {56, ">"},
             {57, "!"},
-            {58, "="},  
+            {58, "="},
             {59, "<="},
             {60, ">="},
             {61, "!="},
@@ -48,19 +48,35 @@ namespace Compilador2
             {77, "*"},
             {79, "%"},
             {80, "COMMENT"},
-            {83, "DECIMAL_NUMBER"},
+            {83, "NUM_INT"},
+            {85, "NUM_DEC" },
             {87, "STRING"}
         };
+        private static int idcount = 0;
 
-        
-        private string lexemeType;
-        public string Lexeme => lexemeType;
-        private string value;
-        public string Value => value;
-        public Token(string lexemeType, int value)
+        private string lexeme;
+        private string token;
+
+        private int tokenID;
+        private int id;
+        public string Lexeme => lexeme;
+        public string _Token => token;
+        public int TokenID => tokenID;
+        public string GetID { get => TokenID == 5 ? " | ID : " + id : ""; }
+
+        public Token(int value, string lexeme)
         {
-            this.lexemeType = lexemeType;
-            this.value = valuesList[value];
+            this.token = valuesList[value];
+            this.lexeme = lexeme;
+            tokenID = value;
+            if (value == 5)
+                id = ++idcount;
+            else 
+                id = 0;
+        }
+        public override string ToString()
+        {
+            return "Lexeme : " + Lexeme + " | Token : " + _Token + GetID; 
         }
     }
 }
